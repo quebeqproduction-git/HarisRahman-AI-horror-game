@@ -27,9 +27,19 @@
                     "priority": 0
                 },
                 {
-                    "name": "Shift",
+                    "name": "Sprint",
                     "type": "Button",
                     "id": "9aaa63a8-fda3-4c6b-8074-9a6426e0486f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "FlashLight",
+                    "type": "Button",
+                    "id": "5cec5052-4335-493c-89a0-99a57a030d70",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -50,7 +60,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
+                    "name": "WASD",
                     "id": "5d174b12-a60a-4521-a40a-c8e5fb74107f",
                     "path": "2DVector",
                     "interactions": "",
@@ -111,7 +121,58 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shift",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab779ca9-8d06-4310-9434-70ee5a6d1b96",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlashLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Look",
+            "id": "738b7961-6201-408e-8a8c-38e5fa92590f",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Value",
+                    "id": "39077009-76f4-4830-bec1-2de875ee5679",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4b0cf3ec-6a14-4b93-b2eb-9275587c74d0",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "396a66b5-8eb5-4328-aa99-04450d7ad781",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -122,6 +183,22 @@
         {
             "name": "Keyboard&Mouse",
             "bindingGroup": "Keyboard&Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "New Control Scheme",
+            "bindingGroup": "New Control Scheme",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",

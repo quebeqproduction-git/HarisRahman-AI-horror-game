@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour, IPlayerActions
 
     public UnityEvent<Vector2> OnMoveInput;
     public UnityEvent<bool> OnSprintInput;
+    public UnityEvent OnInteractInput;
+     public UnityEvent OnFlashlightInput;
 
     private void Awake()
     {
@@ -44,6 +46,7 @@ public class InputManager : MonoBehaviour, IPlayerActions
         {
             // Memunculkan log interact di console ketika input interact ditekan
             Debug.Log("Interact");
+            OnInteractInput?.Invoke();
         }
     }
 
@@ -54,7 +57,7 @@ public class InputManager : MonoBehaviour, IPlayerActions
         OnMoveInput?.Invoke(context.ReadValue<Vector2>());
     }
 
-    public void OnShift(InputAction.CallbackContext context)
+    public void OnSprint(InputAction.CallbackContext context)
     {
         // Mengecek apakah input ditekan
         if (context.performed)
@@ -68,6 +71,16 @@ public class InputManager : MonoBehaviour, IPlayerActions
         {
             // Jika input dilepas maka trigger event OnSprintInput (mengirim data false)
             OnSprintInput?.Invoke(false);
+        }
+    }
+
+    public void OnFlashLight(InputAction.CallbackContext context)
+    {
+        // context.performed digunakan untuk mengecek apakah input ditekan
+        if (context.performed)
+        {
+            // Jika input ditekan maka trigger event OnFlashlightInput
+            OnFlashlightInput?.Invoke();
         }
     }
 }

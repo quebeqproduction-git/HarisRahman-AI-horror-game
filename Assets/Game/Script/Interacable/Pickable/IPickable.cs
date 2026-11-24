@@ -1,6 +1,6 @@
 public interface IPickable
 {
-    public void Pickup();
+    public void Pickup(PlayerCharacter character);
 }
 
     [System.Serializable]

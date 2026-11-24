@@ -28,6 +28,18 @@ public class PlayerCharacterMovement : MonoBehaviour
 
     // Membuat variable untuk menyimpan arah dan kecepatan gerakan character di sumbu X dan Z
     private Vector3 _velocityXZ;
+    // Membuat property untuk menentukan apakah movement sedang aktif
+    public bool Enabled { get; private set; } = true;
+ 
+    // Mengubah status aktif movement
+    public void SetEnabled(bool isEnabled)
+    {
+        Enabled = isEnabled;
+        if (_characterController != null)
+        {
+            _characterController.enabled = isEnabled;
+        }
+    }
 
     // Membuat variable untuk menentukan besar gaya gravitasi
     [SerializeField]
@@ -153,33 +165,35 @@ public class PlayerCharacterMovement : MonoBehaviour
 
     public void Move()
     {
-        // Menghitung arah dan kecepatan gerakan character di sumbu x dan z
-        CalculateVelocityXZ();
-
-        // Menghitung arah dan kecepatan gerakan character di sumbu y (gravitasi)
-        CalculateVelocityY();
-
-        // Menggabung arah dan kecepatan gerakan character di sumbu x, y, dan z
-        // _velocityY dikalikan Time.deltaTime agar perpindahan gravitasi konsisten per frame
-        Vector3 velocity = new Vector3(_velocityXZ.x, _velocityY * Time.deltaTime, _velocityXZ.z);
-
-        // Menggerakkan character sesuai arah dan kecepatan yang sudah dihitung
-        _characterController.Move(velocity);
+        // Mengecek apakah movement aktif
+        if (Enabled == true)
+        {
+            // Jika movement aktif
+            // Menghitung arah dan kecepatan gerakan character di sumbu x dan z
+            CalculateVelocityXZ();
+            // Menghitung arah dan kecepatan gerakan character di sumbu y
+            CalculateVelocityY();
+ 
+            // Menggabung arah dan kecepatan gerakan character di sumbu x, y, dan z
+            Vector3 velocity = new Vector3(_velocityXZ.x,
+                                           _velocityY, 
+                                           _velocityXZ.z);
+ 
+            // Menggerakkan character sesuai arah dan kecepatan yang sudah dihitung
+            _characterController.Move(velocity);
+        }
     }
 
     // Function yang akan dijalankan terus menerus setiap frame
     private void Update()
     {
-        // 1. Cek apakah character berada di ground
         CheckIsGrounded();
 
-        // 2. Menghitung acceleration kecepatan character
         CalculateAcceleration();
 
-        // 3. Cek apakah kecepatan gravitasi Y perlu di-reset
         ResetVelocityY();
 
-        // 4. Gerakkan character
         Move();
     }
+    
 }
